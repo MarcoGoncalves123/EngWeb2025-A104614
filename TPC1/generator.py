@@ -27,7 +27,7 @@ def get_viaturas():
     
     output_path = os.path.join(os.getcwd(),"TPC1","viaturas.json")    
     with open(output_path,"w",encoding="utf-8") as output_file:
-        json.dump(viaturas,output_file, ensure_ascii=False, indent=4)
+        json.dump(viaturas,output_file,ensure_ascii=False,indent=4)
         
 get_intervencoes()
 get_viaturas()
