@@ -25,9 +25,10 @@ http.createServer((req,res) => {
                         var reparacoes = resp.data
                         res.writeHead(200,{'Content-Type' : 'text/html;charset=utf-8'})
                         res.write("<h1>Reparacoes</h1>")
+                        res.write(`<br><a href='/'>Voltar</a>`)
                         res.write("<ul>")
                         reparacoes.forEach(element => {
-                            res.write(`<li><a href='/reparacoes/${element.nif}'>${element.data} ${element.nome} ${element.nif}</a></li>`)
+                            res.write(`<li><a href='/reparacoes/${element.nif}'>Data: ${element.data} | Nome: ${element.nome} | Nif: ${element.nif}</a></li>`)
                         });
                         res.write("</ul>")
                         res.end()
@@ -37,6 +38,8 @@ http.createServer((req,res) => {
                         console.log(err)
                         res.end()  
                     })
+
+                
             }
             if(req.url.startsWith("/reparacoes/"))
             {
@@ -51,19 +54,27 @@ http.createServer((req,res) => {
                         var intervencoes = reparacao.intervencoes
                         res.writeHead(200,{'Content-Type' : 'text/html;charset=utf-8'})
                         res.write("<h1>Detalhes de reparação</h1>")
+                        res.write(`<br><a href='/reparacoes'>Voltar</a>`)
                         res.write(`<p>Nome: ${reparacao.nome}</p>`)
                         res.write(`<p>Nif: ${reparacao.nif}</p>`)
                         res.write(`<p>Data: ${reparacao.data}</p>`)
-                        res.write(`<p>Viatura: (Marca) - ${viatura.marca} - (Modelo) ${viatura.modelo} - (Matricula) ${viatura.marca}</p>`)
+                        res.write(`<p>Viatura</p>`)
+                        res.write("<ul>")
+                            res.write(`<li>Marca: ${viatura.marca} </li>`)
+                            res.write(`<li>Modelo: ${viatura.modelo} </li>`)
+                            res.write(`<li>Matricula: ${viatura.marca} </li>`)
+                        res.write("</ul>")
+
                         res.write(`<p>Número de intervenções: ${reparacao.nr_intervencoes}</p>`)
                         res.write("<ul>")
                         intervencoes.forEach(interv => {
-                            res.write(`<li>${interv.codigo} - ${interv.nome}: ${interv.descricao}</li>`)
+                            res.write(`-------------------------`)
+                            res.write(`<li>Código: ${interv.codigo}</li>`)
+                            res.write(`<li>Nome: ${interv.nome}: ${interv.descricao}</li>`)
+                            res.write(`<li>Descrição: ${interv.descricao}</li>`)
                         })
-
                         res.write("</ul>")                        
-                            res.write(`<br><a href='/reparacoes'>Voltar</a>`)
-                            res.end()
+                        res.end()
                     }
                 }) .catch(err => {
                     res.writeHead(500, { 'Content-Type': 'text/html;charset=utf-8' })
@@ -78,9 +89,10 @@ http.createServer((req,res) => {
                         var intervencoes = resp.data.flat()
                         res.writeHead(200,{'Content-Type' : 'text/html;charset=utf-8'})
                         res.write("<h1>Intervenções</h1>")
+                        res.write(`<br><a href='/'>Voltar</a>`)
                         res.write("<ul>")
                             intervencoes.forEach(element => {
-                                res.write(`<li><a href='/intervencoes/${element.codigo}'>${element.codigo} ${element.nome}${element.descricao}</a></li>`)
+                                res.write(`<li><a href='/intervencoes/${element.codigo}'>Código: ${element.codigo} | Nome:  ${element.nome} | Descrição:${element.descricao}</a></li>`)
                             })
                         res.write("</ul>")
                         res.end()
@@ -108,17 +120,18 @@ http.createServer((req,res) => {
                         
                         res.writeHead(200,{'Content-Type' : 'text/html;charset=utf-8'})
                         res.write("<h1>Detalhes de intervenção</h1>")
+                        res.write(`<br><a href='/intervencoes'>Voltar</a>`)
                         res.write(`<p>Código: ${intervencao.codigo}</p>`)
                         res.write(`<p>Nome: ${intervencao.nome}</p>`)
                         res.write(`<p>Descrição: ${intervencao.descricao}</p>`) 
                         res.write("<h1>Reparações em que foi usada</h1>")
                         reparacoes.forEach(element => {
+                            res.write(`-----------------------`)
                             res.write(`<p>Nome: ${element.nome}</p>`)
                             res.write(`<p>Nif: ${element.nif}</p>`)
                             res.write(`<p>Data: ${element.data}</p>`)      
+                            res.write(`<br><a href='/reparacoes/${element.nif}'> Ver detalhes</a></br>`)
                         })
-
-                        res.write(`<br><a href='/intervencoes'>Voltar</a>`)
                         res.end()
 
                         }) .catch(err => {
@@ -140,9 +153,10 @@ http.createServer((req,res) => {
                         var viaturas = resp.data
                         res.writeHead(200,{'Content-Type' : 'text/html;charset=utf-8'})
                         res.write("<h1>Viaturas</h1>")
+                        res.write(`<br><a href='/'>Voltar</a>`)
                         res.write("<ul>")
                             viaturas.forEach(element => {
-                                res.write(`<li><a href='/viatura/${element.modelo}'>${element.marca} ${element.modelo}</a></li>`)
+                                res.write(`<li><a href='/viatura/${element.modelo}'>Marca: ${element.marca} | Modelo: ${element.modelo}</a></li>`)
                             })
                         res.write("</ul>")
                         res.end()
@@ -170,18 +184,22 @@ http.createServer((req,res) => {
                             
                             res.writeHead(200,{'Content-Type' : 'text/html;charset=utf-8'})
                             res.write("<h1>Detalhes de Modelo</h1>")
+                            res.write(`<br><a href='/viatura'>Voltar</a>`)
                             res.write(`<p>Marca: ${viatura.marca}</p>`)
                             res.write(`<p>Modelo: ${viatura.modelo}</p>`)
                             res.write(`<p>Matrícula: ${viatura.matricula}</p>`) 
 
                             res.write("<h1>Reparações em que foi usada</h1>")
                             reparacoes.forEach(element => {
+                                res.write(`---------------------------`)
                                 res.write(`<p>Nome: ${element.nome}</p>`)
                                 res.write(`<p>Nif: ${element.nif}</p>`)
                                 res.write(`<p>Data: ${element.data}</p>`)      
+                                res.write(`<br><a href='/reparacoes/${element.nif}'>Ver detalhes</a>`)
+
+                                
                             })
 
-                            res.write(`<br><a href='/viatura'>Voltar</a>`)
                             res.end()
 
                             }) .catch(err => {
@@ -205,5 +223,3 @@ http.createServer((req,res) => {
     }
 }).listen(1234)
 
-
-//http://localhost:3000/reparacoes
