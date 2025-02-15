@@ -2,32 +2,23 @@ import os
 import json
 
 def open_json():
+    """Abre o ficheiro dataset_reparacoes.json e retorna os dados."""
     file_path = os.path.join(os.getcwd(), "TPC1", "dataset_reparacoes.json")
     with open(file_path, 'r', encoding='utf-8') as file:
-        data = json.load(file)
-        return data
+        return json.load(file)
 
-def get_intervencoes():
-    data = open_json()
-
-    intervencoes = []
-    for reparacao in data['reparacoes']:
-        intervencoes.append(reparacao['intervencoes'])  
+def extract_and_save(field_name):
     
-    output_path = os.path.join(os.getcwd(), "TPC1", "intervencoes.json")
+    data = open_json()
+    extracted_data = [reparacao[field_name] for reparacao in data['reparacoes']]
+
+    output_path = os.path.join(os.getcwd(), "TPC1", f"{field_name}.json")
     with open(output_path, 'w', encoding='utf-8') as output_file:
-        json.dump(intervencoes, output_file, ensure_ascii=False, indent=4)  
-        
-def get_viaturas():
-    data = open_json()
-    viaturas = []
+        json.dump({field_name: extracted_data}, output_file, ensure_ascii=False, indent=4)
+
+if __name__ == "__main__":
+    fields_to_extract = ["intervencoes", "viatura"]
+
+    for field in fields_to_extract:
+        extract_and_save(field)
     
-    for reparacao in data['reparacoes']:
-        viaturas.append(reparacao['viatura'])      
-    
-    output_path = os.path.join(os.getcwd(),"TPC1","viaturas.json")    
-    with open(output_path,"w",encoding="utf-8") as output_file:
-        json.dump(viaturas,output_file,ensure_ascii=False,indent=4)
-        
-get_intervencoes()
-get_viaturas()
