@@ -56,6 +56,7 @@ export function getAlunosPage(alunos,id,data){
             <div class="w3-card-4">
                 <header class="w3-container w3-purple">
                     <h1>Lista de Alunos ${id == null? '' : ' - Id:' + id}</h1>
+                    <button class="w3-button w3-light-grey" onclick="window.history.back()">Voltar</button>
                 </header>
 
                 <div class="w3-container">
@@ -69,7 +70,7 @@ export function getAlunosPage(alunos,id,data){
                             <th>Instrumento</th>
                         </tr>
                 `
-
+                
                 if(id != null)
                 {
                     page_html += `
@@ -131,6 +132,7 @@ export function getCursosPage(cursos,alunos,id,data){
             <div class="w3-card-4">
                 <header class="w3-container w3-purple">
                     <h1>Lista de Cursos ${id == null? '' : ' - Id:' + id}</h1>
+                    <button class="w3-button w3-light-grey" onclick="window.history.back()">Voltar</button>
                 </header>
 
                 <div class="w3-container">
@@ -222,6 +224,7 @@ export function getInstrumentosPage(instrumentos,alunos,id,data){
             <div class="w3-card-4">
                 <header class="w3-container w3-purple">
                     <h1>Lista de Instrumentos ${id == null? '' : ' - Id:' + id}</h1>
+                    <button class="w3-button w3-light-grey" onclick="window.history.back()">Voltar</button>
                 </header>
 
                 <div class="w3-container">
