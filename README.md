@@ -9,4 +9,5 @@ Este repositório tem como finalidade armazenar e partilhar todos os TPC propost
 Tarefas Semanais
 
 - [TPC1](https://github.com/MarcoGoncalves123/EngWeb2025-A104614/tree/main/TPC1)
+- [TPC2](https://github.com/MarcoGoncalves123/EngWeb2025-A104614/tree/main/TPC2)
 
