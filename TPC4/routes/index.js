@@ -59,12 +59,6 @@ router.post('/edit/:id', function(req, res, next) {
     });
 });
 
-
-
-  
-
-
-
 router.get('/delete/:id', function(req, res, next) {
   const id = req.params.id;
   const pattern = `http://localhost:3000/filmes/${id}`;
@@ -77,6 +71,21 @@ router.get('/delete/:id', function(req, res, next) {
     });
 });
 
+router.get('/actor/:name', function(req, res, next) {
+  const name = req.params.name;
+  const pattern = `http://localhost:3000/filmes`;
+
+  axios.get(pattern)
+    .then(resp => {
+      filmes_de_Ator = resp.data.filter(filme => filme.cast.includes(name))
+      console.log(filmes_de_Ator)
+      res.render('actor',{lfilmes: filmes_de_Ator,tit: `Lista de Filmes com participação de: ${name}`})
+    })
+    .catch(error => {
+      console.log(error);
+      res.render('error', { error: error });
+    });
+});
 
   
 

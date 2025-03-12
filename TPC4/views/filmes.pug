@@ -7,25 +7,26 @@ block content
     .w3.container
       table.w3-table-all 
         tr 
+            th Identificador
             th Ano 
             th Título
             th Elenco
             th Géneros 
         each f in lfilmes 
             tr 
+                td= f.id
                 td= f.year
                 td= f.title
                 td 
                     ul.w3-ul 
                         each ator in f.cast
-                            li= ator
+                            li
+                              a(href=`/actor/${ator}`) #{ator} 
                 td 
                     ul.w3-ul 
                         each genero in f.genres
                             li= genero
-                td
-                td= f.id
-
+                td 
                   a(href=`/edit/${f.id}`) [EDIT]
                   |
                   a(href=`/delete/${f.id}`) [DELETE]
