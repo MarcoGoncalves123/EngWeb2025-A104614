@@ -25,10 +25,49 @@ router.get('/filmes', function(req, res, next) {
     })
 });
 
+
+router.get('/edit/:id', function(req, res, next) {
+  const id = req.params.id;
+  const pattern = `http://localhost:3000/filmes/${id}`;
+
+  axios.get(pattern)
+    .then(resp => {
+      res.render('studentEditFormPage',{movie: resp.data,tit: "Editar Filme"})
+    })
+    .catch(error => {
+      console.log(error);
+      res.render('error', { error: error });
+    });
+});
+
+router.post('/edit/:id', function(req, res, next) {
+
+  const id = req.params.id;
+
+  if (typeof req.body.genres === 'string') {
+    req.body.genres = [req.body.genres]; 
+  }
+  const pattern = `http://localhost:3000/filmes/${id}`;
+
+  axios.put(pattern,req.body)
+    .then(resp => {
+      res.redirect("/filmes")
+    })
+    .catch(error => {
+      console.log(error);
+      res.render('error', { error: error });
+    });
+});
+
+
+
+  
+
+
+
 router.get('/delete/:id', function(req, res, next) {
   const id = req.params.id;
   const pattern = `http://localhost:3000/filmes/${id}`;
-  console.log(pattern);
 
   axios.delete(pattern)
     .then(() => res.redirect('/filmes'))
@@ -37,6 +76,8 @@ router.get('/delete/:id', function(req, res, next) {
       res.render('error', { error: error });
     });
 });
+
+
   
 
 

@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    .w3-card-4
+        header.w3-container.w3-teal
+            h2= tit
+
+        form.w3-container(method="POST")
+            fieldset
+                Label Id
+                input.w3-input.w3-round(type="text" name="id" readonly value=movie.id)
+                label Title
+                input.w3-input.w3-round(type="text" name="title" value=movie.title required)
+                label Year
+                input.w3-input.w3-round(type="text" name="year" value=movie.year required)
+                
+                fieldset
+                label.w3-text-blue Cast
+                each actor, index in movie.cast
+                    label= `Actor ${index + 1}`
+                    input.w3-input.w3-round(type="text" name="cast" value=actor)
+
+                fieldset
+                label.w3-text-blue Genres
+                each genre, index in movie.genres
+                    label= `Genre ${index + 1}`
+                    input.w3-input.w3-round(type="text" name="genres" value=genre)
+
+            br
+            button.w3-btn.w3-purple(type="submit") Save

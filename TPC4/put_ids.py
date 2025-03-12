@@ -5,6 +5,9 @@ def put_ids(movies):
     for movie in movies:
         print(movie)
         movie['id'] = id
+        if isinstance(movie['genres'],str):
+            movie['genres'] = [movie['genres']]
+        
         id += 1
     return movies
 
