@@ -1,9 +1,8 @@
 {
   "Filmes": [
     {
-      "id": 1,
       "title": "102 Dalmatians",
-      "year": "2000",
+      "year": 2000,
       "cast": [
         "Glenn Close",
         "Gérard Depardieu",
@@ -12,22 +11,48 @@
       "genres": [
         "Comedy",
         "Family"
+      ],
+      "id": 1
+    },
+    {
+      "id": 2,
+      "title": "28 Days",
+      "year": "2000",
+      "cast": [
+        "Sandra Bullock",
+        "Viggo Mortensen"
+      ],
+      "genres": [
+        "Comedia"
       ]
     },
     {
-      "id": 3,
       "title": "3 Strikes",
-      "year": "2000",
+      "year": 2000,
       "cast": [
         "Brian Hooks",
         "N'Bushe Wright"
       ],
-      "genres": "Comedy"
+      "genres": [
+        "Comedy"
+      ],
+      "id": 3
     },
     {
-      "id": 5,
+      "title": "The 6th Day",
+      "year": 2000,
+      "cast": [
+        "Arnold Schwarzenegger",
+        "Robert Duvall"
+      ],
+      "genres": [
+        "Science Fiction"
+      ],
+      "id": 4
+    },
+    {
       "title": "Across the Line",
-      "year": "2000",
+      "year": 2000,
       "cast": [
         "Brad Johnson",
         "Adrienne Barbeau",
@@ -35,12 +60,24 @@
       ],
       "genres": [
         "Thriller"
-      ]
+      ],
+      "id": 5
     },
     {
-      "id": 7,
+      "title": "Adventures in Wild California",
+      "year": 2000,
+      "cast": [
+        "Jimmy Smits",
+        "(Narrator)"
+      ],
+      "genres": [
+        "Documentary"
+      ],
+      "id": 6
+    },
+    {
       "title": "The Adventures of Rocky and Bullwinkle",
-      "year": "2000",
+      "year": 2000,
       "cast": [
         "Rene Russo",
         "Jason Alexander",
@@ -51,7 +88,8 @@
       ],
       "genres": [
         "Comedy"
-      ]
+      ],
+      "id": 7
     },
     {
       "title": "All the Pretty Horses",
