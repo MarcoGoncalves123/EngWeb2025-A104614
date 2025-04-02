@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  .w3-card-4
+    header.w3-container.w3-blue
+      h1= tit
+
+    .w3-container
+      p
+        strong Id:
+        |  #{aluno._id}
+      p
+        strong Nome:
+        |  #{aluno.nome}
+      p
+        strong Git:
+        |  #{aluno.git}
+
+    fieldset
+      legend TPC'S do Aluno
+      .tpc-container
+        each num in [1, 2, 3, 4, 5, 6, 7, 8]
+          if aluno[`tpc${num}`] == true
+            label.w3-btn.w3-round TPC#{num} ✔
+          else
+            label.w3-btn.w3-round TPC#{num} ✘
+
+    a.w3-btn.w3-purple(href=`/alunos/editar/${aluno._id}`) Editar
+    a.w3-btn.w3-purple(href=`/alunos/remover/${aluno._id}`) Remover
+
