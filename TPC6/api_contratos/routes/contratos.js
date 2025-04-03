@@ -26,6 +26,18 @@ router.get("/entidades",function(req, res, next){
       .catch(erro => res.jsonp(erro));
 })
 
+router.get("/entidades/:nipc",function(req, res, next){
+  Contrato.listNipcEntidades(req.params.nipc)
+    .then(data => res.jsonp(data))
+    .catch(erro => res.jsonp(erro));
+})
+
+router.get("/sum/entidades/:nipc",function(req, res, next){
+  Contrato.sumContratos(req.params.nipc)
+    .then(data => res.jsonp(data))
+    .catch(erro => res.jsonp(erro));
+})
+
 router.get("/tipos",function(req, res, next){
   Contrato.listTipos()
     .then(data => res.jsonp(data))

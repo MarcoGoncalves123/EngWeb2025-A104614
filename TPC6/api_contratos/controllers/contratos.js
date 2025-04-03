@@ -25,6 +25,21 @@ module.exports.listEntidades = () => {
     .exec()
 }
 
+module.exports.listNipcEntidades = (nipc) => {
+    return Contrato
+    .find({NIPC_entidade_comunicante:nipc})
+    .exec()
+}
+
+module.exports.sumContratos = (nipc) => {
+    return Contrato
+    .aggregate([
+        { $match: {NIPC_entidade_comunicante: nipc}},
+        { $group: { _id: null, totalPreco: { $sum: "$precoContratual"}}}
+    ])
+    .exec()
+}
+
 module.exports.listTipos = () => {
     return Contrato
     .distinct("tipoprocedimento")
